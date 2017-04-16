@@ -3,9 +3,7 @@
 import sys
 
 def reducer():
-    currentCount = 0
-    mostCountAddress = None
-    mostCount = 0
+    sales = 0
     oldKey = None
 
     for line in sys.stdin:
@@ -14,21 +12,20 @@ def reducer():
             # Something has gone wrong. Skip this line.
             continue
 
-        thisKey = data_mapped[0]
+        thisKey, thisSale = data_mapped
 
         if oldKey and oldKey != thisKey:
-            currentCount = 0
+            print '{0}\t{1}'.format(oldKey, sales)
+            sales = float(thisSale)
 
         oldKey = thisKey
-        currentCount += 1
-        if currentCount > mostCount:
-            mostCount = currentCount
-            mostCountAddress = oldKey
+        sales += float(thisSale)
 
-    print "{0}\t{1}".format(mostCountAddress, mostCount)
+    if oldKey != None:
+        print '{0}\t{1}'.format(oldKey, sales)
 
 def main():
-    reducer()
+  reducer()
 
 if __name__ == '__main__':
     main()

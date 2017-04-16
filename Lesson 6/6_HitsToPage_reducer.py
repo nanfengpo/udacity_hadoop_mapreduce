@@ -12,7 +12,7 @@ def reducer():
             # Something has gone wrong. Skip this line.
             continue
 
-        thisKey, thisSale = data_mapped
+        thisKey = data_mapped[0]
 
         oldKey = thisKey
         count += 1
